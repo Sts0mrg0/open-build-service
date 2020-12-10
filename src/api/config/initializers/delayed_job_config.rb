@@ -1,3 +1,9 @@
+# see https://github.com/collectiveidea/delayed_job_active_record/issues/185
+# NOTE: The solution stated here:
+# https://github.com/collectiveidea/delayed_job_active_record/issues/185#issuecomment-743188333
+# didn't work for us
+require 'delayed/backend/active_record'
+
 Delayed::Worker.delay_jobs = !Rails.env.test?
 Delayed::Worker.default_queue_name = 'quick'
 # There are too many problems with the optimized SQL for locking jobs,
